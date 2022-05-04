@@ -15,6 +15,8 @@ const HomePage = () => {
           <button onClick={() => addToCart(pizza.id)}>Buy Pizza</button>
         </div>
       ))}
+
+
     </div>
   )
 }
