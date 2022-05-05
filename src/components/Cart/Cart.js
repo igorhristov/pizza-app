@@ -1,4 +1,4 @@
-import React, { useContext, useState , useRef} from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { CartContext } from "../../context/cartContext";
 
@@ -11,61 +11,75 @@ const Cart = () => {
   useClickOutside(cartRef, () => setIsOpen(false));
 
   return (
-    <div
-      ref={cartRef}
-      style={{
-        position: "absolute",
-        top: 20,
-        right: 20,
-        padding: 20,
-        zIndex: 2,
-        backgroundColor: "white",
-        border: "1px solid black",
-      }}
-    >
+    <div>
+      {isOpen && (
+        <div
+          className="test"
+          style={{
+            position: "fixed",
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: `rgba(0,0,0,0.4)`,
+            zIndex: 10,
+          }}
+        ></div>
+      )}
       <div
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        {" "}
-        Cart{" "}
-      </div>
-
-      <div
+        ref={cartRef}
         style={{
-          display: !isOpen ? "none" : "block",
+          position: "absolute",
+          top: 20,
+          right: 20,
+          padding: 20,
+          zIndex: 20,
+          backgroundColor: "white",
+          border: "1px solid black",
         }}
       >
-        {cartItems.map((pizza) => (
-          <div key={pizza.id + pizza.selectedPizzaSize}>
-            <h2>
-              {pizza.name}{" "}
-              <button
-                onClick={() =>
-                  removeFromCart(pizza.id, pizza.selectedPizzaSize)
-                }
-              >
-                ❌
-              </button>
-            </h2>
-            <h2>{pizza.selectedPizzaSize}</h2>
-            <div>
-              {pizza.selectedPizzaSize === "мала" &&
-                "Price:" +
-                  pizza.priceSmall * pizza.quantity +
-                  "den  -  " +
-                  pizza.quantity}
+        <div
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          {" "}
+          Cart{" "}
+        </div>
+
+        <div
+          style={{
+            display: !isOpen ? "none" : "block",
+          }}
+        >
+          {cartItems.map((pizza) => (
+            <div key={pizza.id + pizza.selectedPizzaSize}>
+              <h2>
+                {pizza.name}{" "}
+                <button
+                  onClick={() =>
+                    removeFromCart(pizza.id, pizza.selectedPizzaSize)
+                  }
+                >
+                  ❌
+                </button>
+              </h2>
+              <h2>{pizza.selectedPizzaSize}</h2>
+              <div>
+                {pizza.selectedPizzaSize === "мала" &&
+                  "Price:" +
+                    pizza.priceSmall * pizza.quantity +
+                    "den  -  " +
+                    pizza.quantity}
+              </div>
+              <div>
+                {pizza.selectedPizzaSize === "голема" &&
+                  "Price" +
+                    pizza.priceBig * pizza.quantity +
+                    "den  -  " +
+                    pizza.quantity}
+              </div>
             </div>
-            <div>
-              {pizza.selectedPizzaSize === "голема" &&
-                "Price" +
-                  pizza.priceBig * pizza.quantity +
-                  "den  -  " +
-                  pizza.quantity}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
