@@ -3,12 +3,31 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 import { CartContext } from "../../context/cartContext";
 
 const Cart = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, emptyCart } = useContext(CartContext);
   console.log(cartItems);
   const [isOpen, setIsOpen] = useState(false);
 
   const cartRef = useRef();
   useClickOutside(cartRef, () => setIsOpen(false));
+
+  function handleOrder() {
+    // axios
+    //   .post("backendURL", {
+    //     cartItems: cartItems,
+    //   })
+    //   .then(function () {
+    //     emptyCart();
+    //    setIsOpen(false);
+    //    alert('Fala sto kupuvate kaj nas')
+    //   })
+    //   .catch((error) => console.log(error));
+
+    setTimeout(() => {
+      emptyCart();
+      setIsOpen(false);
+      alert("Fala sto kupuvate kaj nas");
+    }, 1000);
+  }
 
   return (
     <div>
@@ -42,7 +61,7 @@ const Cart = () => {
           }}
         >
           {" "}
-          Cart{" "}
+          Cart {cartItems.length && cartItems.length}
         </div>
 
         <div
@@ -79,6 +98,8 @@ const Cart = () => {
               </div>
             </div>
           ))}
+
+          <button onClick={handleOrder}>Order all</button>
         </div>
       </div>
     </div>
