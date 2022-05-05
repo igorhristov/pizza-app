@@ -37,8 +37,9 @@ const Cart = () => {
             <h2>
               {pizza.name} <button onClick={() => removeFromCart(pizza.id, pizza.selectedPizzaSize)}>❌</button>
             </h2>
-            <p>Price: {pizza.price}</p>
-
+            <h2>
+              {pizza.selectedPizzaSize}
+            </h2>
             <div>
               {pizza.selectedPizzaSize === "мала" &&
                 "Price:" +

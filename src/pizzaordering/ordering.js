@@ -5,7 +5,7 @@ export default {
       const addedPizza = cartItems.find((pizza) => pizza.id === id && pizza.selectedPizzaSize === selectedPizzaSize);
       let pizzaCartItems;
       if(addedPizza){
-          addedPizza.quantity=addedPizza.quantity+1;
+          addedPizza.quantity=addedPizza.quantity+quantity;
           pizzaCartItems = [
             ...cartItems,
           ];
@@ -14,7 +14,7 @@ export default {
           ...cartItems,
           {
             ...pizzaToAdd,
-            quantity:1,
+            quantity:quantity,
             selectedPizzaSize:selectedPizzaSize,
           }
         ];

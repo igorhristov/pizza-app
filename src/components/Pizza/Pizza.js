@@ -8,6 +8,7 @@ function Pizza() {
   const currentPizza = pizzaProducts.find(e=>e.name.toLowerCase()===pizzaName.toLowerCase());
   const [currentPrice, setCurrentPrice] = useState(currentPizza.priceSmall);
   const [counter, setCounter] = useState(1);
+  const [pizzaSize, setPizzaSize] = useState("мала");
   const pizzas = pizzaProducts.map((pizza) => pizza.name.toLowerCase());
   if (!pizzas.includes(pizzaName.toLowerCase())) {
     return <Navigate to={"pizza"} replace />;
@@ -24,8 +25,8 @@ function Pizza() {
           <p>{currentPizza.ingredients}</p>
           <h1 className="priceBig">{currentPizza.priceSmall} ден - {currentPizza.priceBig} ден</h1>
           <p>Големина: </p>
-          <button onClick={() => setCurrentPrice(currentPizza.priceSmall)}>МАЛА</button>
-          <button onClick={() => setCurrentPrice(currentPizza.priceBig)}>ГОЛЕМА</button>
+          <button onClick={() => {setCurrentPrice(currentPizza.priceSmall); setPizzaSize("мала")}}>МАЛА</button>
+          <button onClick={() => {setCurrentPrice(currentPizza.priceBig); setPizzaSize("голема")}}>ГОЛЕМА</button>
           <br></br>
           <br></br>
           <h1 className="priceBig">{currentPrice} ден</h1>
@@ -43,7 +44,7 @@ function Pizza() {
             </span>{" "}
             {counter} <span onClick={() => setCounter(counter + 1)} style={{cursor:"pointer"}}>+</span>
           </div>
-          <button id="order" onClick={() => addToCart(currentPizza.id, counter, "Мала")}>Buy Pizza</button>
+          <button id="order" onClick={() => addToCart(currentPizza.id, counter, pizzaSize)}>Buy Pizza</button>
           </div>
         </div>
   );
