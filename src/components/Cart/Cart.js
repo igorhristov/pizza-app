@@ -1,13 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useRef} from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import { CartContext } from "../../context/cartContext";
 
 const Cart = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
-  console.log(cartItems)
+  console.log(cartItems);
   const [isOpen, setIsOpen] = useState(false);
+
+  const cartRef = useRef();
+  useClickOutside(cartRef, () => setIsOpen(false));
 
   return (
     <div
+      ref={cartRef}
       style={{
         position: "absolute",
         top: 20,
@@ -35,11 +40,16 @@ const Cart = () => {
         {cartItems.map((pizza) => (
           <div key={pizza.id + pizza.selectedPizzaSize}>
             <h2>
-              {pizza.name} <button onClick={() => removeFromCart(pizza.id, pizza.selectedPizzaSize)}>❌</button>
+              {pizza.name}{" "}
+              <button
+                onClick={() =>
+                  removeFromCart(pizza.id, pizza.selectedPizzaSize)
+                }
+              >
+                ❌
+              </button>
             </h2>
-            <h2>
-              {pizza.selectedPizzaSize}
-            </h2>
+            <h2>{pizza.selectedPizzaSize}</h2>
             <div>
               {pizza.selectedPizzaSize === "мала" &&
                 "Price:" +
