@@ -1,27 +1,87 @@
-.App {
+body{
+  background-color: #1D2322;;
+}
+nav{
+  background-color: #00ada4;
+  padding: 20px;
+  color: #f7f7f7;
+}
+
+nav a{
+  color: #f7f7f7;
+  text-decoration: none;
+}
+
+#pizzaMenu{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.product{
+  position: relative;
+  display: inline-block;
+  width: 22%;
   text-align: center;
+  height: 500px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.product img{
+    width: 90%;
+    height: 60%;
+}
+.product h2{
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.product button{
+  border: none;
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.product p{
+  height: 60px;
+  color: #f7f7f7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.priceTag{
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  background-color: #ffc600;
+  color: #f7f7f7;
+  width: 180px;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  font-size: normal;
+}
+.productDetails{
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  color: #f7f7f7;
+}
+
+.quantitySelector{
+  background-color: white;
+  width: 60px;
+  color: black;
+  font-size: x-large;
+  border-radius: 10px;
+  padding: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#order{
+  border: 0;
+  border-radius: 10px;
+  padding: 10px;
+  width: 200px;
+  margin: 5px;
+  vertical-align: middle;
+  background-color: #00ada4;
+  color: #f7f7f7;
+  font-weight: bold;
 }
